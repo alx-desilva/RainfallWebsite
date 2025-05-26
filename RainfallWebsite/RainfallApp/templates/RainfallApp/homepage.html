@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <title>TheRunoffCalc</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" />
+    <style>
+        /* === Navbar colors: copy-paste this snippet into any file for consistent navbar styling === */
+        .navbar-custom {
+            background-color: #cce5ff; /* light blue background */
+            border-bottom: 1px solid #99ccff; /* subtle darker blue border */
+        }
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-text {
+            color: #004085; /* dark blue text */
+        }
+        .navbar-custom .btn-dark {
+            background-color: #3399ff;
+            border-color: #3399ff;
+        }
+        .navbar-custom .btn-dark:hover {
+            background-color: #2673cc;
+            border-color: #2673cc;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #e6f0ff; /* very light blue page background */
+            color: #003366; /* darkish blue text for readability */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            padding-top: 50px; /* offset for fixed navbar */
+        }
+
+        .big-heading {
+            height: 60vh;
+            min-height: 300px;
+            background-color: #99ccff; /* light medium blue */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+            color: #00264d; /* dark blue for heading text */
+            font-weight: 700;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .row-section {
+            display: flex;
+            height: 40vh;
+            min-height: 200px;
+        }
+
+        .box {
+            width: 50%;
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.95); /* soften images a bit to match vibe */
+        }
+
+        .text-box {
+            width: 50%;
+            background-color: #cce5ff; /* lighter blue background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #003366;
+            font-weight: 600;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        /* Responsive: stack vertically on smaller screens */
+        @media (max-width: 768px) {
+            .row-section {
+                flex-direction: column;
+                height: auto;
+            }
+            .box, .text-box {
+                width: 100%;
+                height: 200px;
+            }
+            .big-heading {
+                height: auto;
+                padding: 40px 20px;
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="fixed-top navbar navbar-light navbar-custom">
+    <div class="container-fluid d-flex justify-content-between">
+        <a class="navbar-brand" href="{% url 'RainfallApp:index' %}">TheRunoffCalc</a>
+        <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+            <li class="nav-item d-flex align-items-center">
+                <span class="navbar-text">Logged in as: {{ user.username }}</span>
+                <a href="{% url 'RainfallApp:logout' %}" class="btn btn-dark btn-sm ml-2">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a href="{% url 'RainfallApp:registration' %}" class="btn btn-dark btn-sm mr-2">Sign-Up</a>
+                <a href="{% url 'RainfallApp:login' %}" class="btn btn-dark btn-sm">Login</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<!-- BIG HEADING RECTANGLE -->
+<div class="big-heading">
+    <h1 class="display-3 text-center">TheRunoffCalc!</h1>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+
+    <!-- Row 1 -->
+    <div class="row-section">
+        <div class="box" style="background-image: url('{% static 'images/Rain.png' %}');"></div>
+        <div class="text-box">
+            <p class="text-center m-0">Welcome to TheRunoffCalc! This solo developed website offers a quick and easy way to calculate amount of runoff in an area. Need a way to save and redew work, our application works perfectly for that! Our system allows users to create and view old equations, so you can keep track of you differnt problems.</p>
+        </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="row-section">
+        <div class="text-box">
+            <p class="text-center m-0">We use a simple an easy to understand equation for all of our calculations. WQV (Volume of runoff) = P (Precipitation) x DA(Drainage Area) x Rv (Surface Coefficient)</p>
+        </div>
+        <div class="box" style="background-image: url('{% static 'images/plant.png' %}');"></div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="row-section">
+        <div class="box" style="background-image: url('{% static 'images/rain3.png' %}');"></div>
+        <div class="text-box">
+            <p class="text-center m-0">This entire website is developed by me. It is coded entirely in Django and uses SQL as it's database. Everything from user ceation, login, and data is made by me.  </p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

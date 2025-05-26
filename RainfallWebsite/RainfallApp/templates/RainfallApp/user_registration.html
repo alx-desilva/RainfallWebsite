@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8" />
+  <title>TheRunoffCalc - Sign Up</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <style>
+    body {
+      margin: 0;
+      padding-top: 56px; /* navbar height */
+      background-color: #e6f0fa; /* light bluish background */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Navbar custom light bluish style */
+    .navbar-custom {
+      background-color: #c9daf8; /* light blue */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-dark {
+      background-color: #4178be;
+      border-color: #4178be;
+    }
+
+    .btn-dark:hover,
+    .btn-dark:focus {
+      background-color: #2f5d8a;
+      border-color: #2f5d8a;
+    }
+
+    form.container {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(65, 120, 190, 0.15);
+      max-width: 500px;
+      width: 100%;
+    }
+
+    h1 {
+      color: #2f5d8a;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: 600;
+      color: #4178be;
+    }
+
+    input.form-control {
+      border: 1.5px solid #c9daf8;
+      box-shadow: none;
+      transition: border-color 0.3s ease;
+    }
+
+    input.form-control:focus {
+      border-color: #4178be;
+      box-shadow: 0 0 6px #4178be;
+    }
+
+    .error-message {
+      color: #b93a3a;
+      font-weight: 600;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="fixed-top navbar navbar-light navbar-custom">
+    <div class="container-fluid d-flex justify-content-between">
+      <a class="navbar-brand text-primary font-weight-bold" href="{% url 'RainfallApp:index' %}">TheRunoffCalc</a>
+      <ul class="nav navbar-nav navbar-right">
+        {% if user.is_authenticated %}
+        <li class="nav-item d-flex align-items-center">
+          <span class="navbar-text text-primary">Logged in as: {{ user.username }}</span>
+          <a href="{% url 'RainfallApp:logout' %}" class="btn btn-dark btn-sm ml-2">Logout</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a href="{% url 'RainfallApp:registration' %}" class="btn btn-dark btn-sm mr-2">Sign-Up</a>
+          <a href="{% url 'RainfallApp:login' %}" class="btn btn-dark btn-sm">Login</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+
+  <!-- SIGN UP FORM -->
+  <form action="{% url 'RainfallApp:registration' %}" method="post" class="container mt-5">
+    {% csrf_token %}
+    <h1 class="text-center">Sign Up</h1>
+    <hr />
+    <div class="mb-3">
+      <label for="username" class="form-label">User Name</label>
+      <input type="text" class="form-control" placeholder="Enter User Name" name="username" id="username" required />
+    </div>
+    <div class="mb-3">
+      <label for="firstname" class="form-label">First Name</label>
+      <input type="text" class="form-control" placeholder="Enter First Name" name="firstname" id="firstname" required />
+    </div>
+    <div class="mb-3">
+      <label for="lastname" class="form-label">Last Name</label>
+      <input type="text" class="form-control" placeholder="Enter Last Name" name="lastname" id="lastname" required />
+    </div>
+    <div class="mb-3">
+      <label for="psw" class="form-label">Password</label>
+      <input type="password" class="form-control" placeholder="Enter Password" name="psw" id="psw" required />
+    </div>
+    <div class="mb-3">
+      <label for="psw2" class="form-label">Confirm Password</label>
+      <input type="password" class="form-control" placeholder="Confirm Password" name="psw2" id="psw2" required />
+    </div>
+
+    {% if error_message %}
+      <div class="error-message">{{ error_message }}</div>
+    {% endif %}
+
+    <button class="btn btn-dark w-100" type="submit">Sign Up</button>
+  </form>
+
+</body>
+</html>
