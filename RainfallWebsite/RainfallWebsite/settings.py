@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-m+36hc2#54g)=apwbf3y+7s2tc@zui8e!hp5#_z0=v7^d-y=3q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["runoffcalc.com, www.runoffcalc.com"]
 
 
 # Application definition
