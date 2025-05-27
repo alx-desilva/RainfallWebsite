@@ -222,7 +222,7 @@
                             <div class="mb-3">
                                 <label for="precipitation" class="form-label"><b>Precipitation</b></label>
                                 <input type="number" step="any" class="form-control" placeholder="Feet" name="Percipitation" id="precipitation" required>
-                                <small class="form-text text-muted">Enter precipitation in feet (e.g., 1.25).</small>
+                                <small class="form-text text-muted">Enter precipitation in inches of a rain event (e.g., 2 inch rain event).</small>
                             </div>
                             <div class="mb-3">
                                 <label for="area" class="form-label"><b>Area</b></label>
@@ -264,7 +264,7 @@
             
             {% if vrunoff %}
                 <div class="text-center">
-                    <h3>Answer: {{ vrunoff }}</h3>
+                    <h3>Total Volume of Runoff in Ft Cubed: {{ vrunoff }}</h3>
                 </div>
             {% endif %}
 

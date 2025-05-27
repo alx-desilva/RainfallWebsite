@@ -42,6 +42,8 @@ def calculation_page(request):
             coef = request.POST['Coefficient']
             user = request.user
 
+            perc = float(perc)/12
+
             Vrunoff = float(perc) * float(area) * float(coef)
 
             rainfall = RainfallList(Title=title, Location=location, VolumeOfRunoff=Vrunoff, Precipitation=perc, Area=area, SurfaceCoefficient=coef, user=user)
